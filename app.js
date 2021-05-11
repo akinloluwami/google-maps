@@ -1,6 +1,8 @@
 const err = document.querySelector(".error");
 const map = document.querySelector("#map");
 const refresh = document.querySelector(".refresh img");
+mapboxgl.accessToken =
+  "pk.eyJ1IjoiYm9zc29uY29kZSIsImEiOiJja29qeHRoZHAwZHo2MnBxZndjanYycGU3In0.r_T8-h5iPsxR87Dq5nbHqQ";
 
 function successLocation(position) {
   setMap([position.coords.longitude, position.coords.latitude]);
@@ -10,6 +12,10 @@ function errorLocation() {
   map.classList.add("hide");
 }
 
+navigator.geolocation.getCurrentPosition(successLocation, errorLocation, {
+  enableHighAccurcy: true,
+});
+
 function setMap(center) {
   const map = new mapboxgl.Map({
     container: "map",
@@ -17,14 +23,16 @@ function setMap(center) {
     center: center,
     zoom: 15,
   });
+
+  const nav = new mapboxgl.NavigationControl();
+  map.addControl(nav, "bottom-right");
+  const directions = new MapboxDirections({
+    accessToken: mapboxgl.accessToken,
+  });
+
+  map.addControl(directions, "top-left");
 }
 
-navigator.geolocation.getCurrentPosition(successLocation, errorLocation, {
-  enableHighAccurcy: true,
-});
-
-mapboxgl.accessToken =
-  "pk.eyJ1IjoiYm9zc29uY29kZSIsImEiOiJja29qeHRoZHAwZHo2MnBxZndjanYycGU3In0.r_T8-h5iPsxR87Dq5nbHqQ";
 refresh.addEventListener("click", (e) => {
   location.reload();
 });
