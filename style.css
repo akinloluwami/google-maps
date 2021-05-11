@@ -44,3 +44,6 @@ p {
     cursor: pointer;
   }
 }
+.mapboxgl-ctrl-attrib-inner {
+  display: none;
+}
