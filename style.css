@@ -6,3 +6,41 @@
   height: 100vh;
   width: 100vw;
 }
+.error {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  background-color: #fff;
+  color: #000;
+  font-family: "Poppins";
+  flex-direction: column;
+}
+.error.show {
+  display: flex;
+}
+#map.hide {
+  display: none;
+}
+p {
+  color: grey;
+}
+.refresh img {
+  width: 30px;
+  cursor: pointer;
+  margin: 10px 0;
+}
+@media only screen and (max-width: 600px) {
+  p {
+    margin: 10px 0;
+  }
+  .error img {
+    width: 50%;
+  }
+  .refresh img {
+    margin: 20px 0;
+    width: 30px;
+    cursor: pointer;
+  }
+}
